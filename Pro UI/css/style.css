@@ -1,0 +1,15 @@
+#firstPage #size {
+  height: 1000px;
+  width: 250px;
+  display: inline-block;
+}
+#firstPage #size2 {
+  height: 1000px;
+  width: 970px;
+  display: inline-block;
+}
+#firstPage #size3 {
+  height: 1000px;
+  width: 200px;
+  display: inline-block;
+}
