@@ -1,0 +1,88 @@
+erzeuge ein programm mit eine sybynarschi ausgabe (die summe der letzten beiden zahlen)
+
+zb 1 1 2 3 5 8 13 21 34 55 usw
+
+
+
+––––––––––––––––––––––––––––––––––––––––––
+
+
+
+<?php
+
+function ara($zahll = 1, $zahlvl = 0 )
+{
+	$erg = $zahll + $zahlvl;
+	return ($erg);
+}
+
+$fehler = array();
+$zeigen = "<br>";
+$zahl = 10;
+
+if (!empty($_POST)) 
+{
+	if(empty($_POST['zahl']))
+	{
+		$fehler['zahl'] = "zahl fehlt ";
+	}
+	
+	if (empty($fehler)) 
+	{
+		if (ctype_digit($_POST['zahl'])) 
+		{
+			$zahl=$_POST['zahl'];
+		} 
+		else
+		{
+			$fehler['zahl'] = "zahl umgültig ";
+		}
+	}
+
+    	if (empty($fehler)) 
+	{
+		$past =0;
+		$last =1;
+		$akt =1;
+		$zeigen.= $akt . "<br>";
+		for($i=0;$i < $_POST['zahl'];$i++)
+		{
+			$akt =ara($last, $past);
+			$past = $last;
+			$last =  $akt;
+			
+			$zeigen .=   " " . $akt . "<br>";
+		}
+	}		
+	else
+	{
+		$zeigen.=$fehler['zahl'];		
+	}	
+}
+?> 
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+        	<meta charset="UTF-8"/>
+        	
+        	
+		<link href="sty/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="sty/js/bootstrap.min.js"></script>
+
+		<link href="sty/sty.css" rel="stylesheet" type="text/css" />
+		<title>ara</title>
+        
+   	</head>
+	<body class="">	
+		<form  action="ara.php" method="POST">
+			<p>wie oft wollen wir durchgehen</p>
+			<input name="zahl" type="number" value="<?php echo $zahl; ?>" min="3"  max="1400"/>
+			<input name="ab" value="Spieln" type="submit" class="btn btn-primary"/>
+			<?php echo $zeigen; ?>
+			<br>								            
+		</form>	
+	</body>
+
+</html>
+
